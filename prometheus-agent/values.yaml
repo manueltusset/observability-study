@@ -813,6 +813,15 @@ serverFiles:
           - targets:
             - localhost:9090
 
+      - job_name: 'karpenter'
+        static_configs:
+          - targets:
+            - karpenter.karpenter.svc.cluster.local:8080
+        metric_relabel_configs:
+          - source_labels: [__name__]
+            regex: 'karpenter_.*'
+            action: keep
+
       # A scrape configuration for running Prometheus on a Kubernetes cluster.
       # This uses separate scrape configs for cluster components (i.e. API server, node)
       # and services to allow each to use different authentication configs.
