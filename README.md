@@ -10,5 +10,6 @@ helm upgrade --install prometheus-agent prometheus-community/prometheus \
              -n monitoring \
              -f prometheus-agent/values.yaml \
              --set server.global.external_labels.cluster=<cluster_name> \
-             --create-namespace
+             --create-namespace \
+             --kube-context=<cluster_name>
 ```
