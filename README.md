@@ -6,10 +6,10 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 
 ## install/upgrade prometheus
-helm upgrade --install prometheus-agent prometheus-community/prometheus \
-             -n monitoring \
-             -f prometheus-agent/values.yaml \
-             --set server.global.external_labels.cluster=<cluster_name> \
-             --create-namespace \
-             --kube-context=<cluster_name>
+helm upgrade --install prometheus-operator prometheus-community/kube-prometheus-stack \
+    -f kube-prometheus-stack/values.yaml \
+    --namespace monitoring \
+    --create-namespace \
+    --set prometheus.prometheusSpec.externalLabels.cluster=<cluster_name> \
+    --kube-context=<cluster_name>
 ```
